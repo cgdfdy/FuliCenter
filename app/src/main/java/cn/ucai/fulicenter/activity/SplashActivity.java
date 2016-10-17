@@ -8,6 +8,7 @@ import android.os.Bundle;
 import cn.ucai.fulicenter.R;
 
 public class SplashActivity extends AppCompatActivity {
+
     long a =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
