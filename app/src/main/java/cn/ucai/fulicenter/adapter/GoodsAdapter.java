@@ -4,9 +4,13 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.bean.NewGoodsBean;
@@ -14,7 +18,7 @@ import cn.ucai.fulicenter.bean.NewGoodsBean;
 /**
  * Created by Administrator on 2016/10/17.
  */
-public class GoodsAdapter extends RecyclerView.Adapter{
+public class GoodsAdapter extends RecyclerView.Adapter {
     Context context;
     List<NewGoodsBean> mList;
     String tvFooterText;
@@ -35,7 +39,7 @@ public class GoodsAdapter extends RecyclerView.Adapter{
         if (viewType == I.TYPE_FOOTER) {
             holder = new FooterViewHolder(View.inflate(context, R.layout.item_footer, null));
         } else {
-            holder = new GoodsViewHolder(View.inflate(context, R.layout.item_newgoods, null));
+            holder = new GoodsViewHolder(View.inflate(context, R.layout.fragment_newgood, null));
         }
         return holder;
     }
@@ -48,8 +52,8 @@ public class GoodsAdapter extends RecyclerView.Adapter{
         } else {
             GoodsViewHolder goodsViewHolder = (GoodsViewHolder) holder;
             NewGoodsBean newGoodsBean = mList.get(position);
-            goodsViewHolder.tvGoodsName.setText(newGoodsBean.getGoodsName());
-            goodsViewHolder.tvGoodsPrince.setText(newGoodsBean.getCurrencyPrice());
+            goodsViewHolder.tvGoodsName.setText(newGoodsBean.getGoodsname());
+            goodsViewHolder.tvGoodsPrince.setText(newGoodsBean.getCurrencyprice());
         }
 
     }
