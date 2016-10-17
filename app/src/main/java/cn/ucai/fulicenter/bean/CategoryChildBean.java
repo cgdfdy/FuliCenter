@@ -1,61 +1,60 @@
 package cn.ucai.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class CategoryChildBean {
+import java.io.Serializable;
 
-        private int id;
-        private int parentid;
-        private String name;
-        private String imageurl;
-        public void setId(int id) {
-            this.id = id;
-        }
-        public int getId() {
-            return id;
-        }
+public class CategoryChildBean implements Serializable {
 
-        public void setParentid(int parentid) {
-            this.parentid = parentid;
-        }
-        public int getParentid() {
-            return parentid;
-        }
+    /**
+     * id : 348
+     * parentId : 344
+     * name : 败姐推荐
+     * imageUrl : cat_image/256_4.png
+     */
 
-        public void setName(String name) {
-            this.name = name;
-        }
-        public String getName() {
-            return name;
-        }
+    private int id;
+    private int parentId;
+    private String name;
+    private String imageUrl;
 
-        public void setImageurl(String imageurl) {
-            this.imageurl = imageurl;
-        }
-        public String getImageurl() {
-            return imageurl;
-        }
-
-    public CategoryChildBean() {
+    public int getId() {
+        return id;
     }
 
-
-    public CategoryChildBean(int id, int parentid, String name, String imageurl) {
+    public void setId(int id) {
         this.id = id;
-        this.parentid = parentid;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.imageurl = imageurl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
-        public String toString() {
-            return "JsonRootBean{" +
-                    "id=" + id +
-                    ", parentid=" + parentid +
-                    ", name='" + name + '\'' +
-                    ", imageurl='" + imageurl + '\'' +
-                    '}';
-        }
+    public String toString() {
+        return "CategoryChildBean{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
     }
-
+}

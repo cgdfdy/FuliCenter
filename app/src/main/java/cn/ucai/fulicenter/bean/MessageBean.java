@@ -1,31 +1,28 @@
 package cn.ucai.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
 public class MessageBean {
+
+    /**
+     * success : true
+     * msg : 添加收藏成功
+     */
 
     private boolean success;
     private String msg;
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-    public boolean getSuccess() {
+
+    public boolean isSuccess() {
         return success;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
+
     public String getMsg() {
         return msg;
     }
 
-    public MessageBean() {
-    }
-
-    public MessageBean(boolean success, String msg) {
-        this.success = success;
+    public void setMsg(String msg) {
         this.msg = msg;
     }
 

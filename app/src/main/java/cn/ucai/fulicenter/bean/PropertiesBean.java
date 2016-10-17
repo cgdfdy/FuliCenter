@@ -1,91 +1,80 @@
 package cn.ucai.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class PropertiesBean {
-        private int id;
+import java.io.Serializable;
+import java.util.Arrays;
 
-        private int goodsid;
+public class PropertiesBean implements Serializable {
 
-        private int colorid;
+    private int id;
+    private int goodsId;
+    private int colorId;
+    private String colorName;
+    private String colorCode;
+    private String colorImg;
+    private String colorUrl;
+    private AlbumsBean[] albums;
 
-        private String colorname;
+    public int getId() {
+        return id;
+    }
 
-        private String colorcode;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        private String colorimg;
+    public int getGoodsId() {
+        return goodsId;
+    }
 
-        private String colorurl;
-        private Object albums;
-        public void setId(int id) {
-            this.id = id;
-        }
-        public int getId() {
-            return id;
-        }
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
 
-        public void setGoodsid(int goodsid) {
-            this.goodsid = goodsid;
-        }
-        public int getGoodsid() {
-            return goodsid;
-        }
+    public int getColorId() {
+        return colorId;
+    }
 
-        public void setColorid(int colorid) {
-            this.colorid = colorid;
-        }
-        public int getColorid() {
-            return colorid;
-        }
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
 
-        public void setColorname(String colorname) {
-            this.colorname = colorname;
-        }
-        public String getColorname() {
-            return colorname;
-        }
+    public String getColorName() {
+        return colorName;
+    }
 
-        public void setColorcode(String colorcode) {
-            this.colorcode = colorcode;
-        }
-        public String getColorcode() {
-            return colorcode;
-        }
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
 
-        public void setColorimg(String colorimg) {
-            this.colorimg = colorimg;
-        }
-        public String getColorimg() {
-            return colorimg;
-        }
+    public String getColorCode() {
+        return colorCode;
+    }
 
-        public void setColorurl(String colorurl) {
-            this.colorurl = colorurl;
-        }
-        public String getColorurl() {
-            return colorurl;
-        }
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
+    }
 
-    public Object getAlbums() {
+    public String getColorImg() {
+        return colorImg;
+    }
+
+    public void setColorImg(String colorImg) {
+        this.colorImg = colorImg;
+    }
+
+    public String getColorUrl() {
+        return colorUrl;
+    }
+
+    public void setColorUrl(String colorUrl) {
+        this.colorUrl = colorUrl;
+    }
+
+    public AlbumsBean[] getAlbums() {
         return albums;
     }
 
-    public void setAlbums(Object albums) {
-        this.albums = albums;
-    }
-
-    public PropertiesBean() {
-    }
-
-    public PropertiesBean(int id, int goodsid, int colorid, String colorname, String colorcode, String colorimg, String colorurl, Object albums) {
-        this.id = id;
-        this.goodsid = goodsid;
-        this.colorid = colorid;
-        this.colorname = colorname;
-        this.colorcode = colorcode;
-        this.colorimg = colorimg;
-        this.colorurl = colorurl;
+    public void setAlbums(AlbumsBean[] albums) {
         this.albums = albums;
     }
 
@@ -93,13 +82,13 @@ public class PropertiesBean {
     public String toString() {
         return "PropertiesBean{" +
                 "id=" + id +
-                ", goodsid=" + goodsid +
-                ", colorid=" + colorid +
-                ", colorname='" + colorname + '\'' +
-                ", colorcode='" + colorcode + '\'' +
-                ", colorimg='" + colorimg + '\'' +
-                ", colorurl='" + colorurl + '\'' +
-                ", albums=" + albums +
+                ", goodsId=" + goodsId +
+                ", colorId=" + colorId +
+                ", colorName='" + colorName + '\'' +
+                ", colorCode='" + colorCode + '\'' +
+                ", colorImg='" + colorImg + '\'' +
+                ", colorUrl='" + colorUrl + '\'' +
+                ", albums=" + Arrays.toString(albums) +
                 '}';
     }
 }

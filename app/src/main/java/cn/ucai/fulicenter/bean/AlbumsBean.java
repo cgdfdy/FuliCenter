@@ -1,61 +1,53 @@
 package cn.ucai.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class AlbumsBean {
+import java.io.Serializable;
+
+public class AlbumsBean implements Serializable {
+
     private int pid;
+    private int imgId;
+    private String imgUrl;
+    private String thumbUrl;
 
-    private int imgid;
-
-    private String imgurl;
-
-    private String thumburl;
-    public void setPid(int pid) {
-        this.pid = pid;
-    }
     public int getPid() {
         return pid;
     }
 
-    public void setImgid(int imgid) {
-        this.imgid = imgid;
-    }
-    public int getImgid() {
-        return imgid;
-    }
-
-    public void setImgurl(String imgurl) {
-        this.imgurl = imgurl;
-    }
-    public String getImgurl() {
-        return imgurl;
-    }
-
-    public void setThumburl(String thumburl) {
-        this.thumburl = thumburl;
-    }
-    public String getThumburl() {
-        return thumburl;
-    }
-
-    public AlbumsBean() {
-    }
-
-    public AlbumsBean(int pid, int imgid, String thumburl, String imgurl) {
+    public void setPid(int pid) {
         this.pid = pid;
-        this.imgid = imgid;
-        this.thumburl = thumburl;
-        this.imgurl = imgurl;
+    }
+
+    public int getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getThumbUrl() {
+        return thumbUrl;
+    }
+
+    public void setThumbUrl(String thumbUrl) {
+        this.thumbUrl = thumbUrl;
     }
 
     @Override
     public String toString() {
         return "AlbumsBean{" +
                 "pid=" + pid +
-                ", imgid=" + imgid +
-                ", imgurl='" + imgurl + '\'' +
-                ", thumburl='" + thumburl + '\'' +
+                ", imgId=" + imgId +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", thumbUrl='" + thumbUrl + '\'' +
                 '}';
     }
 }
