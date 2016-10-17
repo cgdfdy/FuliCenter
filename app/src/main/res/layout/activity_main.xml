@@ -86,6 +86,7 @@
                 android:gravity="center"
                 android:drawableTop="@drawable/selector_menu_item_personal_center"
                 android:button="@null"
+
                 android:layout_weight="1" style="@style/menu_item_style"/>
         </RadioGroup>
 </LinearLayout>
