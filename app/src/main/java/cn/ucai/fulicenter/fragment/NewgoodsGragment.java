@@ -151,7 +151,7 @@ public class NewgoodsGragment extends Fragment {
         mRv.setLayoutManager(glm);
         mRv.setHasFixedSize(true);
         mRv.setAdapter(mAdapter);
-        mRv.addItemDecoration(new SpaceItemDecoration(12));
+        mRv.addItemDecoration(new SpaceItemDecoration(13));
     }
 
     @Override
