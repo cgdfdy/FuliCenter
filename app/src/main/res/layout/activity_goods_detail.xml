@@ -81,20 +81,21 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/good_detail_currency_price"
             />
+        <cn.ucai.fulicenter.view.SlideAutoLoopView
+            android:id="@+id/salv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/good_detail_bg_white"
+            >
+
+        </cn.ucai.fulicenter.view.SlideAutoLoopView>
+        <cn.ucai.fulicenter.view.FlowIndicator
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
         
     </RelativeLayout>
-    <cn.ucai.fulicenter.view.SlideAutoLoopView
-        android:id="@+id/salv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/good_detail_bg_white"
-        >
 
-    </cn.ucai.fulicenter.view.SlideAutoLoopView>
-    <cn.ucai.fulicenter.view.FlowIndicator
-        android:id="@+id/indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        />
 </RelativeLayout>
