@@ -42,6 +42,7 @@ public class NewgoodsGragment extends Fragment {
     GoodsAdapter mAdapter;
     ArrayList<NewGoodsBean> mList;
     int pageId = 1;
+
     GridLayoutManager glm;
 
 
