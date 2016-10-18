@@ -42,9 +42,11 @@ public interface I {
     String ACTION_TYPE_PERSONAL = "personal";
     String ACTION_TYPE_CART = "cart";
 
-    /** 添加收藏*/
-    int ACTION_ADD_COLLECT=1;
-    /** 取消收藏*/
+    /**
+     * 添加收藏
+     */
+    int ACTION_ADD_COLLECT = 1;
+    /** 取消收藏 */
     int ACTION_DELETE_COLLECT=2;
     
     int NEW_GOOD=0;
@@ -414,6 +416,6 @@ public interface I {
 
     /** 下载精选首页图像的接口*/
     String DOWNLOAD_IMG_URL= I.SERVER_ROOT+
-            REQUEST_DOWNLOAD_IMAGE+I.QUESTION+ IMAGE_URL+"=";
+            REQUEST_DOWNLOAD_IMAGE+ I.QUESTION+ IMAGE_URL+"=";
 
 }
