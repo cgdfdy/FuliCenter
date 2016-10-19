@@ -91,6 +91,19 @@ public class BoutiqueAdapter extends Adapter {
         return isMore?R.string.load_more:R.string.no_more;
     }
 
+    public void initData(ArrayList<BoutiqueBean> list) {
+        if (mList!=null){
+            mList.clear();
+        }
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void addData(ArrayList<BoutiqueBean> list) {
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
     class ButiqueViewHolder extends ViewHolder{
         @Bind(R.id.ivBoutiqueImg)
         ImageView ivBoutiqueImg;
