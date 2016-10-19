@@ -55,9 +55,24 @@ public class BoutiqueFragment extends Fragment {
         mAdapter = new BoutiqueAdapter(mContext,mList);
         initVivw();
         initData();
+        setListener();
         return layout;
     }
 
+    private void setListener() {
+        setPullDownListener();
+    }
+
+    private void setPullDownListener() {
+        mSrl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSrl.setRefreshing(true);
+                mTvRefresh.setVisibility(View.VISIBLE);
+                downloadBoutique(I.ACTION_PULL_DOWN);
+            }
+        });
+    }
     private void initData() {
         downloadBoutique(I.ACTION_DOWNLOAD);
     }
