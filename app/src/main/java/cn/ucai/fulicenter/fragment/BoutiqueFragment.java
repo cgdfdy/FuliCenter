@@ -2,9 +2,9 @@ package cn.ucai.fulicenter.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,7 +31,7 @@ import cn.ucai.fulicenter.view.SpaceItemDecoration;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BoutiqueFragment extends Fragment {
+public  class BoutiqueFragment extends BaseFragment {
 
 
     @Bind(R.id.tv_refresh)
@@ -45,6 +45,7 @@ public class BoutiqueFragment extends Fragment {
     BoutiqueAdapter mAdapter;
     ArrayList<BoutiqueBean> mList;
 
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,13 +54,11 @@ public class BoutiqueFragment extends Fragment {
         mContext =(MainActivity) getContext();
         mList =new ArrayList<>();
         mAdapter = new BoutiqueAdapter(mContext,mList);
-        initVivw();
-        initData();
-        setListener();
+        super.onCreateView(inflater,container,savedInstanceState);
         return layout;
     }
-
-    private void setListener() {
+    @Override
+    protected void setListener() {
         setPullDownListener();
     }
 
@@ -73,7 +72,8 @@ public class BoutiqueFragment extends Fragment {
             }
         });
     }
-    private void initData() {
+    @Override
+    protected void initData() {
         downloadBoutique(I.ACTION_DOWNLOAD);
     }
 
@@ -109,8 +109,8 @@ public class BoutiqueFragment extends Fragment {
     });
 
     }
-
-    private void initVivw() {
+    @Override
+    protected void initView() {
         mSrl.setColorSchemeColors(
                 getResources().getColor(R.color.google_blue),
                 getResources().getColor(R.color.google_green),
