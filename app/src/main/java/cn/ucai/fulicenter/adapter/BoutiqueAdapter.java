@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.bean.BoutiqueBean;
+import cn.ucai.fulicenter.utils.ImageLoader;
 
 /**
  * Created by Administrator on 2016/10/19.
@@ -25,6 +26,13 @@ import cn.ucai.fulicenter.bean.BoutiqueBean;
 public class BoutiqueAdapter extends Adapter {
     Context context;
     ArrayList<BoutiqueBean> mList;
+    boolean isMore;
+
+    public BoutiqueAdapter(Context context, ArrayList<BoutiqueBean> List) {
+        this.context = context;
+        this.mList = new ArrayList<>();
+        mList.addAll(List);
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,9 +47,30 @@ public class BoutiqueAdapter extends Adapter {
         return holder;
     }
 
+
+    public boolean isMore() {
+        return isMore;
+    }
+
+    public void setMore(boolean more) {
+        isMore = more;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        if (holder instanceof GoodsAdapter.FooterViewHolder){
+            ((GoodsAdapter.FooterViewHolder) holder).tvFooter.setText(getFooterString());
+
+        }
+        if (holder instanceof  ButiqueViewHolder){
+            BoutiqueBean boutiqueBean = mList.get(position);
+            ImageLoader.downloadImg(context,((ButiqueViewHolder) holder).ivBoutiqueImg,boutiqueBean.getImageurl());
+            ((ButiqueViewHolder) holder).tvBoutiqueTitle.setText(boutiqueBean.getTitle());
+            ((ButiqueViewHolder) holder).tvBoutiqueName.setText(boutiqueBean.getName());
+            ((ButiqueViewHolder) holder).tvBoutiqueDescription.setText(boutiqueBean.getDescription());
+        }
     }
 
     @Override
@@ -57,7 +86,11 @@ public class BoutiqueAdapter extends Adapter {
         return I.TYPE_ITEM;
     }
 
-  class ButiqueViewHolder extends ViewHolder{
+    public int getFooterString() {
+        return isMore?R.string.load_more:R.string.no_more;
+    }
+
+    class ButiqueViewHolder extends ViewHolder{
         @Bind(R.id.ivBoutiqueImg)
         ImageView ivBoutiqueImg;
         @Bind(R.id.tvBoutiqueTitle)
