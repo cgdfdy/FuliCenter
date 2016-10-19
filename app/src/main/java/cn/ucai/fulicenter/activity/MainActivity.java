@@ -2,6 +2,7 @@ package cn.ucai.fulicenter.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.fragment.NewgoodsGragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,9 +31,11 @@ public class MainActivity extends AppCompatActivity {
     RadioButton personal;
 
     int index;
+    int currentIndex;
     RadioButton[] rbs;
     Fragment[] mFragments;
     NewgoodsGragment mNewgoodsfragment;
+    BoutiqueFragment mBoutiquefragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +50,17 @@ public class MainActivity extends AppCompatActivity {
     private void initFragment() {
         mFragments = new Fragment[5];
         mNewgoodsfragment = new NewgoodsGragment();
+        mBoutiquefragment = new BoutiqueFragment();
+        mFragments[0] = mNewgoodsfragment;
+        mFragments[1] = mBoutiquefragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container,mNewgoodsfragment)
+                .add(R.id.fragment_container,mBoutiquefragment)
+                .hide(mBoutiquefragment)
                 .show(mNewgoodsfragment)
                 .commit();
     }
-
     private void initView() {
         rbs = new RadioButton[5];
         rbs[0] = newGood;
@@ -61,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         rbs[3] = cart;
         rbs[4] = personal;
     }
-
     public void onCheckedChange(View view) {
         switch (view.getId()) {
             case R.id.new_good:
@@ -80,9 +87,21 @@ public class MainActivity extends AppCompatActivity {
                 index = 4;
                 break;
         }
-        setRadioButtonStatus();
-    }
+        setFragment();
 
+    }
+    private void setFragment() {
+        if (index!=currentIndex) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.hide(mFragments[currentIndex]);
+            if (mFragments[index].isAdded()){
+                ft.add(R.id.fragment_container,mFragments[index]);
+            }
+            ft.show(mFragments[index]).commit();
+        }
+        setRadioButtonStatus();
+        currentIndex = index;
+    }
     private void setRadioButtonStatus() {
         for (int i = 0; i < rbs.length; i++) {
             if (i == index) {
