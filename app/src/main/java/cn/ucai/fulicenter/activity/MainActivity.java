@@ -13,9 +13,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.fragment.BoutiqueFragment;
-import cn.ucai.fulicenter.fragment.NewgoodsGragment;
+import cn.ucai.fulicenter.fragment.NewgoodsFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Bind(R.id.new_good)
     RadioButton newGood;
@@ -34,22 +34,20 @@ public class MainActivity extends AppCompatActivity {
     int currentIndex;
     RadioButton[] rbs;
     Fragment[] mFragments;
-    NewgoodsGragment mNewgoodsfragment;
+    NewgoodsFragment mNewgoodsfragment;
     BoutiqueFragment mBoutiquefragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         Log.i("MainActivity", "onCreate");
-        initView();
-        initFragment();
+        super.onCreate(savedInstanceState);
     }
 
     private void initFragment() {
         mFragments = new Fragment[5];
-        mNewgoodsfragment = new NewgoodsGragment();
+        mNewgoodsfragment = new NewgoodsFragment();
         mBoutiquefragment = new BoutiqueFragment();
         mFragments[0] = mNewgoodsfragment;
         mFragments[1] = mBoutiquefragment;
@@ -61,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 .show(mNewgoodsfragment)
                 .commit();
     }
-    private void initView() {
+    protected void initView() {
         rbs = new RadioButton[5];
         rbs[0] = newGood;
         rbs[1] = boutique;
@@ -69,6 +67,18 @@ public class MainActivity extends AppCompatActivity {
         rbs[3] = cart;
         rbs[4] = personal;
     }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+        initFragment();
+
+    }
+
     public void onCheckedChange(View view) {
         switch (view.getId()) {
             case R.id.new_good:
@@ -110,5 +120,8 @@ public class MainActivity extends AppCompatActivity {
                 rbs[i].setChecked(false);
             }
         }
+    }
+    public void  onBackPressed(){
+        finish();
     }
 }
