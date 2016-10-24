@@ -20,6 +20,7 @@ import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.L;
 import cn.ucai.fulicenter.utils.MFGT;
 import cn.ucai.fulicenter.utils.OkHttpUtils;
+import cn.ucai.fulicenter.utils.ResultUtils;
 
 public class LoginActivity extends BaseActivity {
     private  static final String TAG = LoginActivity.class.getSimpleName();
@@ -85,10 +86,11 @@ public class LoginActivity extends BaseActivity {
         final ProgressDialog pd = new ProgressDialog(mContent);
         pd.setMessage(getResources().getString(R.string.logining));
         pd.show();
-        NetDao.login(mContent, username, password, new OkHttpUtils.OnCompleteListener<Result>() {
+        NetDao.login(mContent, username, password,  new OkHttpUtils.OnCompleteListener<String>() {
             @Override
-            public void onSuccess(Result result) {
-                pd.dismiss();
+            public void onSuccess(String s) {
+                Result result =ResultUtils.getResultFromJson(s,User.class);
+
                 L.e(TAG,"result = "+ result);
                 if (result == null){
                     CommonUtils.showLongToast(R.string.login_fail);
@@ -107,7 +109,7 @@ public class LoginActivity extends BaseActivity {
                         }
                     }
                 }
-
+                pd.dismiss();
             }
 
             @Override

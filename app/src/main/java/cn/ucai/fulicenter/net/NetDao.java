@@ -40,22 +40,22 @@ public class NetDao {
                 .targetClass(BoutiqueBean[].class)
                 .execute(listener);
     }
-    public static void register(Context context, String username, String nickname,String password, OkHttpUtils.OnCompleteListener<Result> listener){
-        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+    public static void register(Context context, String username, String nickname,String password, OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_REGISTER)
                 .addParam(I.User.USER_NAME,username)
                 .addParam(I.User.NICK,nickname)
                 .addParam(I.User.PASSWORD, MD5.getMessageDigest(password))
-                .targetClass(Result.class)
+                .targetClass(String.class)
                 .post()
                 .execute(listener);
     }
-    public static void login(Context context,String username,String password,OkHttpUtils.OnCompleteListener<Result> listener){
-        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+    public static void login(Context context, String username, String password, OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_LOGIN)
                 .addParam(I.User.USER_NAME,username)
                 .addParam(I.User.PASSWORD,MD5.getMessageDigest(password))
-                .targetClass(Result.class)
+                .targetClass(String.class)
                 .execute(listener);
     }
 
