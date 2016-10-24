@@ -1,7 +1,6 @@
 package cn.ucai.fulicenter.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,11 +18,11 @@ import cn.ucai.fulicenter.adapter.GoodsAdapter;
 import cn.ucai.fulicenter.bean.BoutiqueBean;
 import cn.ucai.fulicenter.bean.NewGoodsBean;
 import cn.ucai.fulicenter.net.NetDao;
-import cn.ucai.fulicenter.net.OkHttpUtils;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.ConvertUtils;
 import cn.ucai.fulicenter.utils.L;
 import cn.ucai.fulicenter.utils.MFGT;
+import cn.ucai.fulicenter.utils.OkHttpUtils;
 import cn.ucai.fulicenter.view.SpaceItemDecoration;
 
 /**

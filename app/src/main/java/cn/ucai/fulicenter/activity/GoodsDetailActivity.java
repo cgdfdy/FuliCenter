@@ -1,7 +1,6 @@
 package cn.ucai.fulicenter.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,12 +11,10 @@ import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.bean.AlbumsBean;
 import cn.ucai.fulicenter.bean.GoodsDetailsBean;
-import cn.ucai.fulicenter.bean.NewGoodsBean;
-import cn.ucai.fulicenter.fragment.BaseFragment;
 import cn.ucai.fulicenter.net.NetDao;
-import cn.ucai.fulicenter.net.OkHttpUtils;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.L;
+import cn.ucai.fulicenter.utils.OkHttpUtils;
 import cn.ucai.fulicenter.view.FlowIndicator;
 import cn.ucai.fulicenter.view.SlideAutoLoopView;
 

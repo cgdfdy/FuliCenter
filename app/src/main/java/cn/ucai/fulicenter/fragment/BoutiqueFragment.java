@@ -22,7 +22,6 @@ import cn.ucai.fulicenter.activity.MainActivity;
 import cn.ucai.fulicenter.adapter.BoutiqueAdapter;
 import cn.ucai.fulicenter.bean.BoutiqueBean;
 import cn.ucai.fulicenter.net.NetDao;
-import cn.ucai.fulicenter.net.OkHttpUtils;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.ConvertUtils;
 import cn.ucai.fulicenter.utils.L;

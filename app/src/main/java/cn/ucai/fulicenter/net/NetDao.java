@@ -7,6 +7,9 @@ import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.bean.BoutiqueBean;
 import cn.ucai.fulicenter.bean.GoodsDetailsBean;
 import cn.ucai.fulicenter.bean.NewGoodsBean;
+import cn.ucai.fulicenter.bean.Result;
+import cn.ucai.fulicenter.utils.MD5;
+import cn.ucai.fulicenter.utils.OkHttpUtils;
 
 /**
  * Created by Administrator on 2016/10/17.
@@ -35,6 +38,16 @@ public class NetDao {
         OkHttpUtils utils =new OkHttpUtils(context);
         utils.setRequestUrl(I.REQUEST_FIND_BOUTIQUES)
                 .targetClass(BoutiqueBean[].class)
+                .execute(listener);
+    }
+    public static void register(Context context, String username, String nickname,String password, OkHttpUtils.OnCompleteListener<Result> listener){
+        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_REGISTER)
+                .addParam(I.User.USER_NAME,username)
+                .addParam(I.User.NICK,nickname)
+                .addParam(I.User.PASSWORD, MD5.getMessageDigest(password))
+                .targetClass(Result.class)
+                .post()
                 .execute(listener);
     }
 
