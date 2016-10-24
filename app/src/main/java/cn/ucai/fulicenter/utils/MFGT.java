@@ -8,6 +8,7 @@ import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.activity.BoutiqueChildActivity;
 import cn.ucai.fulicenter.activity.GoodsDetailActivity;
+import cn.ucai.fulicenter.activity.LoginActivity;
 import cn.ucai.fulicenter.activity.MainActivity;
 import cn.ucai.fulicenter.bean.BoutiqueBean;
 
@@ -45,5 +46,9 @@ public class MFGT {
     public static void startActivity(Context context,Intent intent){
         context.startActivity(intent);
         ((Activity)context).overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
+
+    public static void gotoLogin(Activity context){
+        startActivity(context, LoginActivity.class);
     }
 }
