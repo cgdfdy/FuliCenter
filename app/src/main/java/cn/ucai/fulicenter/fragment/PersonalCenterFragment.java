@@ -1,9 +1,7 @@
 package cn.ucai.fulicenter.fragment;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +20,7 @@ import cn.ucai.fulicenter.utils.L;
 import cn.ucai.fulicenter.utils.MFGT;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by Administrator on 2016/10/24.
  */
 public class PersonalCenterFragment extends BaseFragment {
     private static final String TAG = PersonalCenterFragment.class.getSimpleName();
