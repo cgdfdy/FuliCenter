@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.bean.User;
+import cn.ucai.fulicenter.dao.SharedPreferenceUtils;
 import cn.ucai.fulicenter.dao.UserDao;
+import cn.ucai.fulicenter.utils.L;
 import cn.ucai.fulicenter.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
+    private static String TAG = SplashActivity.class.getSimpleName();
 
     private final long sleepTime = 2000;
     SplashActivity mContext ;
@@ -26,9 +30,18 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                UserDao dao = new UserDao(mContext);
-
-                User user =dao.getUser("a8527010");
+                User user = FuLiCenterApplication.getUser();
+                L.e(TAG,"fulicenter,user ="+ user);
+                String username = SharedPreferenceUtils.getInstence(mContext).getUser();
+                L.e(TAG,"fulicenter,username ="+ username);
+                if (user == null && username!=null){
+                    UserDao dao = new UserDao(mContext);
+                    user = dao.getUser(username);
+                    L.e(TAG,"database,user ="+ user);
+                    if (user!=null){
+                        FuLiCenterApplication.setUser(user);
+                    }
+                }
                 MFGT.gotoMainActivity(SplashActivity.this);
                 finish();
             }
