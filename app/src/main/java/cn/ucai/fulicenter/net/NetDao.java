@@ -40,13 +40,13 @@ public class NetDao {
                 .targetClass(BoutiqueBean[].class)
                 .execute(listener);
     }
-    public static void register(Context context, String username, String nickname,String password, OkHttpUtils.OnCompleteListener<String> listener){
-        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
+    public static void register(Context context, String username, String nickname,String password, OkHttpUtils.OnCompleteListener<Result> listener){
+        OkHttpUtils<Result> utils = new OkHttpUtils<>(context);
         utils.setRequestUrl(I.REQUEST_REGISTER)
                 .addParam(I.User.USER_NAME,username)
                 .addParam(I.User.NICK,nickname)
                 .addParam(I.User.PASSWORD, MD5.getMessageDigest(password))
-                .targetClass(String.class)
+                .targetClass(Result.class)
                 .post()
                 .execute(listener);
     }
@@ -57,6 +57,15 @@ public class NetDao {
                 .addParam(I.User.PASSWORD,MD5.getMessageDigest(password))
                 .targetClass(String.class)
                 .execute(listener);
+    }
+    public static void updateNick(Context context, String username, String nick, OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_UPDATE_USER_NICK)
+                .addParam(I.User.USER_NAME,username)
+                .addParam(I.User.NICK,nick)
+                .targetClass(String.class)
+                .execute(listener);
+
     }
 
     public void temp(Context context) {

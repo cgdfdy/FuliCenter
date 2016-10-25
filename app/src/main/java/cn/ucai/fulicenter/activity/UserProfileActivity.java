@@ -12,6 +12,7 @@ import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.bean.User;
 import cn.ucai.fulicenter.dao.SharedPreferenceUtils;
+import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.ImageLoader;
 import cn.ucai.fulicenter.utils.MFGT;
 import cn.ucai.fulicenter.view.DisplayUtils;
@@ -67,6 +68,7 @@ public class UserProfileActivity extends BaseActivity {
             case R.id.layout_user_profile_avatar:
                 break;
             case R.id.layout_user_profile_username:
+                CommonUtils.showLongToast(R.string.user_name_connot_be_modify);
                 break;
             case R.id.tv_user_profile_nick:
                 break;
