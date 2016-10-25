@@ -30,5 +30,6 @@
     <string name="update_nick_fail_unmodify"></string>
     <string name="update_fail"></string>
     <string name="update_user_nick"></string>
+    <string name="update_user_nick_success"></string>
 
 </resources>
