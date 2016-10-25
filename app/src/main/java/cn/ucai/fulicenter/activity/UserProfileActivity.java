@@ -1,10 +1,13 @@
 package cn.ucai.fulicenter.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -12,11 +15,16 @@ import butterknife.OnClick;
 import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.bean.Result;
 import cn.ucai.fulicenter.bean.User;
 import cn.ucai.fulicenter.dao.SharedPreferenceUtils;
+import cn.ucai.fulicenter.net.NetDao;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.ImageLoader;
 import cn.ucai.fulicenter.utils.MFGT;
+import cn.ucai.fulicenter.utils.OkHttpUtils;
+import cn.ucai.fulicenter.utils.OnSetAvatarListener;
+import cn.ucai.fulicenter.utils.ResultUtils;
 import cn.ucai.fulicenter.view.DisplayUtils;
 
 public class UserProfileActivity extends BaseActivity {
@@ -27,7 +35,7 @@ public class UserProfileActivity extends BaseActivity {
     TextView tvUserName;
     @Bind(R.id.tv_user_profile_nick)
     TextView tvNick;
-
+    OnSetAvatarListener    mOnSetAvatartListener;
     UserProfileActivity mContext;
     User user =null;
     @Override
@@ -64,6 +72,9 @@ public class UserProfileActivity extends BaseActivity {
     @OnClick({R.id.layout_user_profile_avatar, R.id.layout_user_profile_username, R.id.tv_user_profile_nick, R.id.layout_user_profile_nickname, R.id.btn_logout})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.iv_user_profile_avatar:
+                mOnSetAvatartListener= new OnSetAvatarListener(mContext,R.id.layout_user_profile_avatar,user.getMuserName(),I.AVATAR_TYPE_USER_PATH);
+                break;
             case R.id.layout_user_profile_username:
                 CommonUtils.showLongToast(R.string.user_name_connot_be_modify);
                 break;
@@ -102,6 +113,12 @@ public class UserProfileActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == I.REQUEST_CODE_NICK){
+            CommonUtils.showLongToast(R.string.update_user_nick_success);
+        }
+        if (requestCode == OnSetAvatarListener.REQUEST_CROP_PHOTO){
+            updateAvatar();
+        }
         if (resultCode != RESULT_OK){
             return;
         }
@@ -109,5 +126,38 @@ public class UserProfileActivity extends BaseActivity {
             CommonUtils.showLongToast(R.string.update_user_nick_success);
         }
 
+    }
+
+    private void updateAvatar() {
+        File file = new File(OnSetAvatarListener.getAvatarPath(
+                mContext,user.getMavatarPath()+"/"+
+                        user.getMuserName()+I.AVATAR_SUFFIX_JPG));
+        final ProgressDialog pd = new ProgressDialog(mContext);
+        pd.setMessage(getResources().getString(R.string.update_user_avatar));
+        pd.show();
+        NetDao.updateAvatar(mContext, user.getMuserName(), file, new OkHttpUtils.OnCompleteListener<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Result result = ResultUtils.getResultFromJson(s, User.class);
+                if (result == null){
+                    CommonUtils.showLongToast(R.string.update_user_avatar_fail);
+                }else{
+                    User u = (User) result.getRetData();
+                    if (result.isRetMsg()){
+                        FuLiCenterApplication.setUser(u);
+                        ImageLoader.setAvatar(ImageLoader.getAvatarUrl(u),mContext,ivAvatar);
+                        CommonUtils.showLongToast(R.string.update_user_avatar_success);
+                    }else{
+                        CommonUtils.showLongToast(R.string.update_user_avatar_fail);
+                    }
+                }
+                pd.dismiss();
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
     }
 }
