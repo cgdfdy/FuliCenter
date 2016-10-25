@@ -151,7 +151,7 @@ public class UserProfileActivity extends BaseActivity {
                         CommonUtils.showLongToast(R.string.update_user_avatar_fail);
                     }
                 }
-                pd.dismiss();
+                pd.dismiss( );
             }
 
             @Override
