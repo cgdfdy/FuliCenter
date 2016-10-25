@@ -134,10 +134,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected  void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_OK && requestCode == I.REQUEST_CODE_REGISTER);
         String name = data.getStringExtra(I.User.USER_NAME);
-        mUsername.setText(name);
+        mUsername.setText(name) ;
     }
 }
