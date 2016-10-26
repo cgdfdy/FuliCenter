@@ -7,6 +7,7 @@ import android.content.Intent;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.activity.BoutiqueChildActivity;
+import cn.ucai.fulicenter.activity.CollectsActivity;
 import cn.ucai.fulicenter.activity.GoodsDetailActivity;
 import cn.ucai.fulicenter.activity.LoginActivity;
 import cn.ucai.fulicenter.activity.MainActivity;
@@ -70,5 +71,9 @@ public class MFGT {
     }
     public static void gotoUpDataActivity(Activity context){
         startActivityForResult(context,new Intent(context,UpDataNickActivity.class),I.REQUEST_CODE_NICK);
+    }
+
+    public static void gotoCollects(Activity context){
+        startActivity(context, CollectsActivity.class);
     }
 }

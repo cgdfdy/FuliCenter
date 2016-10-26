@@ -96,6 +96,11 @@ public class PersonalCenterFragment extends BaseFragment {
 
         MFGT.gotoSettings(mContext);
     }
+
+    @OnClick(R.id.layout_center_collect)
+    public void gotoCollectsList(){
+        MFGT.gotoCollects(mContext);
+    }
     private void syncUserInfo() {
         NetDao.syncUserInfo(mContext, user.getMuserName(), new OkHttpUtils.OnCompleteListener<String>() {
             @Override

@@ -23,6 +23,7 @@ import cn.ucai.fulicenter.net.NetDao;
 import cn.ucai.fulicenter.utils.CommonUtils;
 import cn.ucai.fulicenter.utils.ConvertUtils;
 import cn.ucai.fulicenter.utils.L;
+import cn.ucai.fulicenter.utils.OkHttpUtils;
 import cn.ucai.fulicenter.view.SpaceItemDecoration;
 
 /**
@@ -158,9 +159,4 @@ public class NewgoodsFragment extends BaseFragment {
         mRv.addItemDecoration(new SpaceItemDecoration(13));
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

@@ -24,7 +24,8 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.UserProfileActivity" />
-        <activity android:name=".activity.UpDataNickActivity"></activity>
+        <activity android:name=".activity.UpDataNickActivity" />
+        <activity android:name=".activity.CollectsActivity"></activity>
     </application>
 
 </manifest>
