@@ -159,5 +159,6 @@ public class CollectsActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         initData();
+        mAdapter.notifyDataSetChanged();
     }
 }

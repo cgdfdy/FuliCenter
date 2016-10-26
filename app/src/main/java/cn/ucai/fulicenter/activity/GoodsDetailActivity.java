@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -129,7 +130,51 @@ public abstract class GoodsDetailActivity extends BaseActivity {
     public void onBackClick() {
         MFGT.finish(this);
     }
+    @OnClick(R.id.iv_good_collect)
+    public void onCollectClick(){
+        User user = FuLiCenterApplication.getUser();
+        if (user==null){
+            MFGT.gotoLogin(mContent);
+        }else {
+            if (isCollected){
+                NetDao.deleteCollect(mContent, user.getMuserName(), goodsId, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                    @Override
+                    public void onSuccess(MessageBean result) {
+                        if (result!=null && result.isSuccess()){
+                            isCollected = !isCollected;
+                            updateGoodsCollectStatus();
+                            CommonUtils.showLongToast(result.getMsg());
+                        }
+                    }
 
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }else {
+                NetDao.addeleteCollect(mContent, user.getMuserName(), goodsId, new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                    @Override
+                    public void onSuccess(MessageBean result) {
+                        if (result!=null && result.isSuccess()){
+                            isCollected = !isCollected;
+                            updateGoodsCollectStatus();
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+            }
+
+        }
+    }
+
+    public void back(View v) {
+        MFGT.finish(this);
+    }
     private void isCollected() {
         User user = FuLiCenterApplication.getUser();
         if (user != null) {
