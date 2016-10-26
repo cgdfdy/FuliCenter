@@ -136,6 +136,26 @@ public class CollectsAdapter extends Adapter {
         }
         @OnClick(R.id.iv_collect_del)
         public void deleteCollect(){
+            final CollectBean goods = (CollectBean) layoutGoods.getTag();
+            String username = FuLiCenterApplication.getUser().getMuserName();
+            NetDao.deleteCollect(mContext, username, goods.getGoodsId(), new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                @Override
+                public void onSuccess(MessageBean result) {
+                    if (result!=null && result.isSuccess()){
+                        mList.remove(goods);
+                        notifyDataSetChanged();
+                    }else {
+                        CommonUtils.showLongToast(result!=null?result.getMsg():mContext.getResources().getString(R.string.delete_collect_fail));
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    L.e("error = "+ error);
+                    CommonUtils.showLongToast(mContext.getResources().getString(R.string.delete_collect_fail));
+                }
+            });
+
 
         }
     }
