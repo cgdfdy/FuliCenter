@@ -67,7 +67,17 @@ public class User {
     public void setMavatarLastUpdateTime(String mavatarLastUpdateTime) {
         this.mavatarLastUpdateTime = mavatarLastUpdateTime;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        User user = (User) o;
+
+        if (!muserName.equals(user.muserName)) return false;
+        return mavatarLastUpdateTime.equals(user.mavatarLastUpdateTime);
+
+    }
     @Override
     public String toString() {
         return "User{" +
