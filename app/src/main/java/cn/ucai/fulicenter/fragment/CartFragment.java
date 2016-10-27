@@ -149,6 +149,7 @@ public class CartFragment extends BaseFragment {
     }
 
     private void setCartLayout(boolean hasCart) {
+
         mLayoutCart.setVisibility(hasCart?View.VISIBLE:View.GONE);
         mTvNothing.setVisibility(hasCart?View.GONE:View.VISIBLE);
         mRv.setVisibility(hasCart?View.VISIBLE:View.GONE);
@@ -179,6 +180,7 @@ public class CartFragment extends BaseFragment {
             mTvCartSumPrice.setText(""+Double.valueOf(sumPrice));
             mTvCartSavePrice.setText(""+Double.valueOf(sumPrice-rankPrice));
         }else {
+            setCartLayout(false);
             mTvCartSumPrice.setText("节省: ");
             mTvCartSavePrice.setText("节省：");
         }
@@ -195,6 +197,7 @@ public class CartFragment extends BaseFragment {
         public void onReceive(Context context, Intent intent) {
             L.e(TAG,"update......");
             sumPrice();
+            setCartLayout(mList!=null&&mList.size()>0);
         }
 
     }
