@@ -22,6 +22,7 @@ public interface I {
     int REQUEST_CODE_LOGIN = 102;
     int REQUEST_CODE_NICK = 103;
     int REQUEST_CODE_LOGIN_FROM_CART= 104;
+   int CART_CHECKED_DEFAULT =0;
 
     /** BeeColud APP ID */
     String BEE_COLUD_APP_ID = "3539b590-4859-4128-87a3-5fb8b86b94f6";
@@ -56,6 +57,7 @@ public interface I {
     int CATEGORY_GOOD=1;
     int CAT_ID=0;
     String DOWNLOAD_AVATAR_URL ="" ;
+    String BROADCAST_UPDATA_CART = "cn.ucai.fulicenter.update.cart";
 
     interface Goods {
         String KEY_RESULT = "result";
