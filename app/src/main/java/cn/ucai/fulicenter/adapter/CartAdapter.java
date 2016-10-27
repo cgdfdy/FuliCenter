@@ -1,13 +1,13 @@
 package cn.ucai.fulicenter.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import cn.ucai.fulicenter.bean.CartBean;
  * Created by Administrator on 2016/10/19.
  */
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
-    Activity context;
+    Context context;
     ArrayList<CartBean> mList;
 
 
@@ -69,8 +69,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
 
-
-class CartViewHolder extends RecyclerView.ViewHolder {
+    class CartViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.cb_cart_selected)
         CheckBox mCbCartSelected;
         @Bind(R.id.iv_cart_thumb)

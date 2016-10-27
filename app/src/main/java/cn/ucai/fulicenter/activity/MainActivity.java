@@ -16,7 +16,9 @@ import cn.ucai.fulicenter.FuLiCenterApplication;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.fragment.BoutiqueFragment;
+import cn.ucai.fulicenter.fragment.CartFragment;
 import cn.ucai.fulicenter.fragment.NewgoodsFragment;
+import cn.ucai.fulicenter.fragment.PersonalCenterFragment;
 import cn.ucai.fulicenter.utils.L;
 import cn.ucai.fulicenter.utils.MFGT;
 
@@ -42,6 +44,8 @@ public class MainActivity extends BaseActivity {
     Fragment[] mFragments;
     NewgoodsFragment mNewgoodsfragment;
     BoutiqueFragment mBoutiquefragment;
+    CartFragment mCartFragment;
+    PersonalCenterFragment mPersonalCenterFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +59,18 @@ public class MainActivity extends BaseActivity {
         mFragments = new Fragment[5];
         mNewgoodsfragment = new NewgoodsFragment();
         mBoutiquefragment = new BoutiqueFragment();
+        mCartFragment = new CartFragment();
+        mPersonalCenterFragment =new PersonalCenterFragment();
         mFragments[0] = mNewgoodsfragment;
         mFragments[1] = mBoutiquefragment;
+        mFragments[3] = mCartFragment;
+        mFragments[4]=mPersonalCenterFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container,mNewgoodsfragment)
-                .add(R.id.fragment_container,mBoutiquefragment)
-                .hide(mBoutiquefragment)
+//                .add(R.id.fragment_container,mBoutiquefragment)
+//
+//                .hide(mBoutiquefragment)
                 .show(mNewgoodsfragment)
                 .commit();
     }
@@ -97,21 +106,25 @@ public class MainActivity extends BaseActivity {
                 index = 2;
                 break;
             case R.id.cart:
-                index = 3;
+                if (FuLiCenterApplication.getUser() == null) {
+                    MFGT.gotoLoginFromCart(this);
+                } else {
+
+                    index = 3;
+                }
                 break;
             case R.id.personal:
-                if (FuLiCenterApplication.getUsername() == null) {
+                if (FuLiCenterApplication.getUser() == null) {
                     MFGT.gotoLogin(this);
                 } else {
 
                     index = 4;
+                }
                     break;
                 }
                 setFragment();
                 L.i("index="+index);
                 L.i("currentIndex = " + currentIndex);
-
-        }
     }
     private void setFragment() {
         if (index!=currentIndex) {
@@ -150,8 +163,12 @@ public class MainActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         L.e(TAG,"onActivityResult,requestCode="+requestCode);
-        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiCenterApplication.getUser()!=null){
-            index = 4;
+
+           if (requestCode == I.REQUEST_CODE_LOGIN){
+               index = 4;
+           }
+        if (requestCode ==I.REQUEST_CODE_LOGIN_FROM_CART){
+            index= 3;
         }
     }
 }
